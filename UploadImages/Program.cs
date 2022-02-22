@@ -13,8 +13,6 @@ namespace UploadImages
 {
     public class Program
     {
-        readonly static String connectionString = "";
-
         static void Main()
         {
             Console.WriteLine($"----------start to upload the photos at {DateTime.UtcNow}----------------");
@@ -66,6 +64,7 @@ namespace UploadImages
             Console.WriteLine($"---------{containerName}-----------");
 
             //Create a unique name for the container
+            var connectionString = File.ReadAllText("CS.txt");
             BlobContainerClient containerClient = new BlobContainerClient(connectionString, containerName);
             await containerClient.CreateIfNotExistsAsync();
 
